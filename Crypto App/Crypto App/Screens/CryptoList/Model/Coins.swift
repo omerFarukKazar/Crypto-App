@@ -34,3 +34,17 @@ struct Coin: Decodable {
 //        case redditURL = "redditUrl"
 //    }
 }
+
+extension Coin {
+    var iconUrl: URL? {
+        guard let icon = icon,
+              let iconUrl = URL(string: icon) else { fatalError("Icon URL not found!") }
+        return iconUrl
+    }
+
+    var prettyPrice: String? {
+        guard let price = price else { return "-"}
+        return "\(Double(round(pow(10, 5) * price) / pow(10, 5))) $"
+    }
+
+}

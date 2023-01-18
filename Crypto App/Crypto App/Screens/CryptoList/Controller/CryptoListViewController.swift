@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CryptoListViewController: UIViewController {
     // MARK: - Xib Elements
@@ -28,7 +29,9 @@ class CryptoListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        title = "Coins"
+        let nib = UINib(nibName: "CoinTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "cell")
 
         viewModel.fetchCoins() // Try to fetch Coins
         viewModel.changeHandler = { change in // Take action by the result
@@ -55,8 +58,13 @@ extension CryptoListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = viewModel.coinForIndexPath(indexPath)?.name
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinTableViewCell else { fatalError("CoinTableViewCell not found") }
+        guard let coin = viewModel.coinForIndexPath(indexPath) else { fatalError("Coin can't be found") }
+        cell.title = coin.name
+        cell.price = coin.prettyPrice
+        cell.imageView?.kf.setImage(with: coin.iconUrl) { _ in
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
         return cell
     }
 
