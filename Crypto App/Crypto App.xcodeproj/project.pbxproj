@@ -12,6 +12,9 @@
 		9D15A0DF297215A10086CB1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D15A0DE297215A10086CB1D /* Assets.xcassets */; };
 		9D15A0E2297215A10086CB1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D15A0E0297215A10086CB1D /* LaunchScreen.storyboard */; };
 		9D2F5A5129722CF5006FE786 /* CryptoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D2F5A5029722CF5006FE786 /* CryptoListViewController.xib */; };
+		9D55BE81297370BE00A47832 /* CryptoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55BE80297370BE00A47832 /* CryptoListViewModel.swift */; };
+		9D55BE8429737D1B00A47832 /* CoinsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55BE8329737D1B00A47832 /* CoinsResponse.swift */; };
+		9D55BE8629737D4F00A47832 /* Coins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55BE8529737D4F00A47832 /* Coins.swift */; };
 		9DABC2BE29734D8C00DD8D3C /* CryptoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DABC2BD29734D8C00DD8D3C /* CryptoAPI.swift */; };
 		9DCD431329722C7900C5E06A /* CryptoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCD431129722C7900C5E06A /* CryptoListViewController.swift */; };
 /* End PBXBuildFile section */
@@ -26,6 +29,9 @@
 		9D15A0E1297215A10086CB1D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D15A0E3297215A10086CB1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9D2F5A5029722CF5006FE786 /* CryptoListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CryptoListViewController.xib; sourceTree = "<group>"; };
+		9D55BE80297370BE00A47832 /* CryptoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListViewModel.swift; sourceTree = "<group>"; };
+		9D55BE8329737D1B00A47832 /* CoinsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsResponse.swift; sourceTree = "<group>"; };
+		9D55BE8529737D4F00A47832 /* Coins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coins.swift; sourceTree = "<group>"; };
 		9DABC2BD29734D8C00DD8D3C /* CryptoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAPI.swift; sourceTree = "<group>"; };
 		9DCD431129722C7900C5E06A /* CryptoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -138,6 +144,23 @@
 			path = Plist;
 			sourceTree = "<group>";
 		};
+		9D55BE7F297370AC00A47832 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9D55BE80297370BE00A47832 /* CryptoListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9D55BE8229737D0900A47832 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9D55BE8329737D1B00A47832 /* CoinsResponse.swift */,
+				9D55BE8529737D4F00A47832 /* Coins.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		9DABC2BB29734D7F00DD8D3C /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +180,8 @@
 		9DCD431029722C3700C5E06A /* CryptoList */ = {
 			isa = PBXGroup;
 			children = (
+				9D55BE8229737D0900A47832 /* Model */,
+				9D55BE7F297370AC00A47832 /* ViewModel */,
 				9DCD431629722C9600C5E06A /* Controller */,
 				9DCD431529722C9200C5E06A /* View */,
 			);
@@ -314,7 +339,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9DABC2BE29734D8C00DD8D3C /* CryptoAPI.swift in Sources */,
+				9D55BE81297370BE00A47832 /* CryptoListViewModel.swift in Sources */,
+				9D55BE8629737D4F00A47832 /* Coins.swift in Sources */,
 				9D15A0D6297215A00086CB1D /* AppDelegate.swift in Sources */,
+				9D55BE8429737D1B00A47832 /* CoinsResponse.swift in Sources */,
 				9DCD431329722C7900C5E06A /* CryptoListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
