@@ -9,5 +9,6 @@ target 'Crypto App' do
   pod 'Moya'
   pod 'SnapKit'
   pod 'SwiftLint'
+  pod 'Kingfisher'
   
 end

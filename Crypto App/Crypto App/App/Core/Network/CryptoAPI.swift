@@ -37,15 +37,14 @@ extension CoinStatsAPI: TargetType {
                return .requestPlain // returns "coins"
         case .chart(let id, let period):
             let parameters = ["coinId": id,
-                              "period" : period]
+                              "period": period]
             return .requestParameters(parameters: parameters, encoding: URLEncoding.queryString)
             // Since the get method can be sent without packaging, used URLEncoding.queryString
         }
     }
 
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         nil
     }
-
 
 }

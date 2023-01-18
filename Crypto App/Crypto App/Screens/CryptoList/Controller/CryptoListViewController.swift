@@ -6,14 +6,42 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CryptoListViewController: UIViewController {
-
+    // MARK: - Xib Elements
     @IBOutlet private weak var tableView: UITableView!
 
+    // MARK: - Properties
+    private let viewModel: CryptoListViewModel // Dependency Injection
+
+    // MARK: - Init
+    init(viewModel: CryptoListViewModel) { // Dependency Injection
+        self.viewModel = viewModel
+        super.init(nibName: "CryptoListViewController", bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        title = "Coins"
+        let nib = UINib(nibName: "CoinTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "cell")
+
+        viewModel.fetchCoins() // Try to fetch Coins
+        viewModel.changeHandler = { change in // Take action by the result
+            switch change {
+            case .didFetchCoins:
+                self.tableView.reloadData()
+            case .didErrorOccured(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 
 }
@@ -26,12 +54,17 @@ extension CryptoListViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension CryptoListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        viewModel.numberOfRows
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "Cell - \(indexPath.row)"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinTableViewCell else { fatalError("CoinTableViewCell not found") }
+        guard let coin = viewModel.coinForIndexPath(indexPath) else { fatalError("Coin can't be found") }
+        cell.title = coin.name
+        cell.price = coin.prettyPrice
+        cell.imageView?.kf.setImage(with: coin.iconUrl) { _ in
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
         return cell
     }
 

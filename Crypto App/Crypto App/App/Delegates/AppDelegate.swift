@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private func setupWindow() {
         // Override point for customization after application launch.
-        let viewController = CryptoListViewController()
+        let viewController = CryptoListViewController(viewModel: CryptoListViewModel())
         let window = UIWindow(frame: UIScreen.main.bounds)
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
