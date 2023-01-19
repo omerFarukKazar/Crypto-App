@@ -14,7 +14,7 @@ class CoinTableViewCell: UITableViewCell {
             titleLabel.text
         }
         set {
-            titleLabel.text = newValue
+                self.titleLabel.text = newValue
         }
     }
 
