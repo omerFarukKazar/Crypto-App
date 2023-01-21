@@ -8,13 +8,12 @@
 import UIKit
 import Kingfisher
 
-class CryptoListViewController: UIViewController {
+final class CryptoListViewController: UIViewController {
     // MARK: - Xib Elements
     @IBOutlet private weak var tableView: UITableView!
 
     // MARK: - Properties
     private let viewModel: CryptoListViewModel // Dependency Injection
-
     // MARK: - Init
     init(viewModel: CryptoListViewModel) { // Dependency Injection
         self.viewModel = viewModel
@@ -48,7 +47,12 @@ class CryptoListViewController: UIViewController {
 
 // MARK: - UITableViewDelegate
 extension CryptoListViewController: UITableViewDelegate {
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let coin = viewModel.coinForIndexPath(indexPath) else { return }
+        let viewModel = CryptoDetailViewModel(coin: coin)
+        let viewController = CryptoDetailViewController(viewModel: viewModel)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
 // MARK: - UITableViewDataSource

@@ -11,10 +11,14 @@
 		9D15A0D6297215A00086CB1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D15A0D5297215A00086CB1D /* AppDelegate.swift */; };
 		9D15A0DF297215A10086CB1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D15A0DE297215A10086CB1D /* Assets.xcassets */; };
 		9D15A0E2297215A10086CB1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D15A0E0297215A10086CB1D /* LaunchScreen.storyboard */; };
+		9D1A68502978F5DA004686E8 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = 9D1A684F2978F5DA004686E8 /* Charts */; };
 		9D2F5A5129722CF5006FE786 /* CryptoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D2F5A5029722CF5006FE786 /* CryptoListViewController.xib */; };
 		9D55BE81297370BE00A47832 /* CryptoListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55BE80297370BE00A47832 /* CryptoListViewModel.swift */; };
 		9D55BE8429737D1B00A47832 /* CoinsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55BE8329737D1B00A47832 /* CoinsResponse.swift */; };
 		9D55BE8629737D4F00A47832 /* Coins.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D55BE8529737D4F00A47832 /* Coins.swift */; };
+		9D60F2812978EA3300D88C8A /* CryptoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60F2802978EA3300D88C8A /* CryptoDetailViewController.swift */; };
+		9D60F2852978EA7A00D88C8A /* CryptoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D60F2842978EA7A00D88C8A /* CryptoDetailView.swift */; };
+		9D830D31297AD4F5007D1276 /* CryptoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D830D30297AD4F5007D1276 /* CryptoDetailViewModel.swift */; };
 		9DABC2BE29734D8C00DD8D3C /* CryptoAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DABC2BD29734D8C00DD8D3C /* CryptoAPI.swift */; };
 		9DBFD04A2977AEA100CFC75C /* CoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFD0492977AEA100CFC75C /* CoinTableViewCell.swift */; };
 		9DBFD04C2977AEBD00CFC75C /* CoinTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DBFD04B2977AEBD00CFC75C /* CoinTableViewCell.xib */; };
@@ -34,6 +38,9 @@
 		9D55BE80297370BE00A47832 /* CryptoListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListViewModel.swift; sourceTree = "<group>"; };
 		9D55BE8329737D1B00A47832 /* CoinsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinsResponse.swift; sourceTree = "<group>"; };
 		9D55BE8529737D4F00A47832 /* Coins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coins.swift; sourceTree = "<group>"; };
+		9D60F2802978EA3300D88C8A /* CryptoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailViewController.swift; sourceTree = "<group>"; };
+		9D60F2842978EA7A00D88C8A /* CryptoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailView.swift; sourceTree = "<group>"; };
+		9D830D30297AD4F5007D1276 /* CryptoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDetailViewModel.swift; sourceTree = "<group>"; };
 		9DABC2BD29734D8C00DD8D3C /* CryptoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAPI.swift; sourceTree = "<group>"; };
 		9DBFD0492977AEA100CFC75C /* CoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTableViewCell.swift; sourceTree = "<group>"; };
 		9DBFD04B2977AEBD00CFC75C /* CoinTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoinTableViewCell.xib; sourceTree = "<group>"; };
@@ -46,6 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5701A67DEE41D6E9B6B61F47 /* Pods_Crypto_App.framework in Frameworks */,
+				9D1A68502978F5DA004686E8 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,6 +119,7 @@
 		9D15A0EA297215C00086CB1D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				9D60F27F2978E9FE00D88C8A /* CryptoDetail */,
 				9DCD431029722C3700C5E06A /* CryptoList */,
 			);
 			path = Screens;
@@ -163,6 +172,40 @@
 				9D55BE8529737D4F00A47832 /* Coins.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9D60F27F2978E9FE00D88C8A /* CryptoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9D830D2F297AD4EB007D1276 /* ViewModel */,
+				9D60F2832978EA6300D88C8A /* View */,
+				9D60F2822978EA6100D88C8A /* Controller */,
+			);
+			path = CryptoDetail;
+			sourceTree = "<group>";
+		};
+		9D60F2822978EA6100D88C8A /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9D60F2802978EA3300D88C8A /* CryptoDetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9D60F2832978EA6300D88C8A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9D60F2842978EA7A00D88C8A /* CryptoDetailView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9D830D2F297AD4EB007D1276 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9D830D30297AD4F5007D1276 /* CryptoDetailViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		9DABC2BB29734D7F00DD8D3C /* Core */ = {
@@ -237,6 +280,9 @@
 			dependencies = (
 			);
 			name = "Crypto App";
+			packageProductDependencies = (
+				9D1A684F2978F5DA004686E8 /* Charts */,
+			);
 			productName = "Crypto App";
 			productReference = 9D15A0D2297215A00086CB1D /* Crypto App.app */;
 			productType = "com.apple.product-type.application";
@@ -265,6 +311,9 @@
 				Base,
 			);
 			mainGroup = 9D15A0C9297215A00086CB1D;
+			packageReferences = (
+				9D1A684E2978F5DA004686E8 /* XCRemoteSwiftPackageReference "Charts" */,
+			);
 			productRefGroup = 9D15A0D3297215A00086CB1D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -357,9 +406,12 @@
 				9D55BE81297370BE00A47832 /* CryptoListViewModel.swift in Sources */,
 				9D55BE8629737D4F00A47832 /* Coins.swift in Sources */,
 				9D15A0D6297215A00086CB1D /* AppDelegate.swift in Sources */,
+				9D60F2812978EA3300D88C8A /* CryptoDetailViewController.swift in Sources */,
 				9D55BE8429737D1B00A47832 /* CoinsResponse.swift in Sources */,
+				9D830D31297AD4F5007D1276 /* CryptoDetailViewModel.swift in Sources */,
 				9DCD431329722C7900C5E06A /* CryptoListViewController.swift in Sources */,
 				9DBFD04A2977AEA100CFC75C /* CoinTableViewCell.swift in Sources */,
+				9D60F2852978EA7A00D88C8A /* CryptoDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,7 +565,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -548,7 +600,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -587,6 +639,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9D1A684E2978F5DA004686E8 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9D1A684F2978F5DA004686E8 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D1A684E2978F5DA004686E8 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9D15A0CA297215A00086CB1D /* Project object */;
 }
