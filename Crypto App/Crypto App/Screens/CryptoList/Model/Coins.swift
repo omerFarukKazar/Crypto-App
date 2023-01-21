@@ -14,8 +14,8 @@ struct Coin: Decodable {
     let rank: Int?
     let price, priceBtc: Double?
     let volume: Double?
-    let marketCap, availableSupply, totalSupply, priceChange1H: Double?
-    let priceChange1D, priceChange1W: Double?
+    let marketCap, availableSupply, totalSupply, priceChange1h: Double
+    let priceChange1d, priceChange1w: Double?
     let websiteURL: String?
     let twitterURL: String?
     let exp: [String]?
@@ -23,28 +23,44 @@ struct Coin: Decodable {
     let decimals: Int?
     let redditURL: String?
 
-//    enum CodingKeys: String, CodingKey {
-//        case id, icon, name, symbol, rank, price, priceBtc, volume, marketCap, availableSupply, totalSupply
-//        case priceChange1H = "priceChange1h"
-//        case priceChange1D = "priceChange1d"
-//        case priceChange1W = "priceChange1w"
-//        case websiteURL = "websiteUrl"
-//        case twitterURL = "twitterUrl"
-//        case exp, contractAddress, decimals
-//        case redditURL = "redditUrl"
-//    }
+    //    enum CodingKeys: String, CodingKey {
+    //        case id, icon, name, symbol, rank, price, priceBtc, volume, marketCap, availableSupply, totalSupply
+    //        case priceChange1H = "priceChange1h"
+    //        case priceChange1D = "priceChange1d"
+    //        case priceChange1W = "priceChange1w"
+    //        case websiteURL = "websiteUrl"
+    //        case twitterURL = "twitterUrl"
+    //        case exp, contractAddress, decimals
+    //        case redditURL = "redditUrl"
+    //    }
 }
 
 extension Coin {
-    var iconUrl: URL? {
+    var iconUrl: URL {
         guard let icon = icon,
               let iconUrl = URL(string: icon) else { fatalError("Icon URL not found!") }
         return iconUrl
     }
 
-    var prettyPrice: String? {
-        guard let price = price else { return "-"}
+    var prettyPrice: String {
+        guard let price = price else { return "-" }
         return "\(Double(round(pow(10, 5) * price) / pow(10, 5))) $"
     }
 
+    var change: Double {
+        guard let price = price else { return .zero }
+//              let priceChange1h = priceChange1h else { return .zero }
+        return Double(round(100 * (price * priceChange1h)) / 100)
+    }
+
+    var prettyChange: String {
+//        guard let priceChange1h = priceChange1h else { return "-" }
+        if change > .zero {
+            return "-> \(change) (\(priceChange1h)%) "
+        } else if change < .zero {
+            return "<- \(change) (\(priceChange1h)%) "
+        } else {
+            return "- \(change) (\(priceChange1h)%) "
+        }
+    }
 }

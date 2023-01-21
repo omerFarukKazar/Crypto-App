@@ -48,7 +48,9 @@ final class CryptoListViewController: UIViewController {
 // MARK: - UITableViewDelegate
 extension CryptoListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let viewController = CryptoDetailViewController()
+        guard let coin = viewModel.coinForIndexPath(indexPath) else { return }
+        let viewModel = CryptoDetailViewModel(coin: coin)
+        let viewController = CryptoDetailViewController(viewModel: viewModel)
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
