@@ -16,7 +16,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="386" height="74"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Kha-4m-ozq">
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Kha-4m-ozq">
                         <rect key="frame" x="8" y="16" width="370" height="42"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xNz-4y-ucd">
@@ -43,6 +43,10 @@
                                 </subviews>
                             </stackView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="xNz-4y-ucd" secondAttribute="bottom" id="PMC-ZZ-41a"/>
+                            <constraint firstItem="xNz-4y-ucd" firstAttribute="top" secondItem="Kha-4m-ozq" secondAttribute="top" id="Xl1-Rj-RTo"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <constraints>

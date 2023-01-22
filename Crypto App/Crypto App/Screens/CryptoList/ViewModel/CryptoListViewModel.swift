@@ -15,10 +15,10 @@ enum CryptoListChanges { // Enum for the network response situations.
 final class CryptoListViewModel {
     // MARK: - Properties
     var changeHandler: ((CryptoListChanges) -> Void)? // Closure to handle responses
-    private let provider = MoyaProvider<CoinStatsAPI>()
     private var coinsResponse: CoinsResponse? {
         didSet {
-            self.changeHandler?(.didFetchCoins) // When network result is successful, this triggers the tableView.reloadData() on ViewController.
+            self.changeHandler?(.didFetchCoins)
+            // When network result is successful, this triggers the tableView.reloadData() on ViewController.
         }
     }
 

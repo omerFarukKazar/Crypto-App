@@ -31,52 +31,56 @@ final class CryptoDetailView: UIView {
         }
     }
 
+    var isRatePositive: Bool? { // Flag for changing rateLabel color depending to the change rate.
+        didSet {
+            guard let isRatePositive = isRatePositive else { return }
+            if isRatePositive {
+                rateLabel.textColor = .green
+            } else {
+                rateLabel.textColor = .red
+            }
+        }
+    }
     // MARK: - UI Elements
     /// Closures used for Property Initialization because i wanted to change some properties of UI Elements.
     private lazy var coinNameLabel: UILabel = {
         let label = UILabel()
-
+        // Some properties like font could be changed.
         return label
     }()
 
-    lazy var iconImageView: UIImageView = {
-        let imageView = UIImageView()
-
-        return imageView
-    }()
+    lazy var iconImageView: UIImageView = UIImageView() // Since there is no additional changes, it's easier to instantiate without closure.
 
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
+        label.font = .systemFont(ofSize: 24.0)
         return label
     }()
 
-    private lazy var rateLabel: UILabel = {
-        let label = UILabel()
-        label.text = "rateLabel"
-        return label
-    }()
+    private lazy var rateLabel: UILabel = UILabel()
 
     private lazy var alertButton: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 32.0
+        button.layer.cornerRadius = 22.0
         button.setTitleColor(.black, for: .normal)
-        button.setTitle("Alert", for: .normal)
-        button.backgroundColor = .lightGray
+        button.setTitle("🔔", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24)
+        button.layer.borderWidth = 1
         return button
     }()
 
     private lazy var settingsButton: UIButton = {
         let button = UIButton()
-        button.layer.cornerRadius = 32.0
+        button.layer.cornerRadius = 22.0
         button.setTitleColor(.black, for: .normal)
-        button.setTitle("Settings", for: .normal)
-        button.backgroundColor = .lightGray
+        button.setTitle("⚙️", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 24)
+        button.layer.borderWidth = 1
         return button
     }()
 
-    private lazy var chartView: LineChartView = {
+    private(set) lazy var lineChartView: LineChartView = {
         let chart = LineChartView()
-
         return chart
     }()
 
@@ -132,18 +136,18 @@ final class CryptoDetailView: UIView {
         settingsButton.snp.makeConstraints { make in
             make.trailing.equalTo(-20.0)
             make.centerY.equalTo(priceLabel.snp.centerY)
-            make.size.equalTo(64.0)
+            make.size.equalTo(42.0)
         }
 
         addSubview(alertButton)
         alertButton.snp.makeConstraints { make in
             make.trailing.equalTo(settingsButton.snp.leading).offset(-8.0)
             make.centerY.equalTo(settingsButton.snp.centerY)
-            make.size.equalTo(64.0)
+            make.size.equalTo(42.0)
         }
 
-        addSubview(chartView)
-        chartView.snp.makeConstraints { make in
+        addSubview(lineChartView)
+        lineChartView.snp.makeConstraints { make in
             make.top.equalTo(rateLabel.snp.bottom).offset(16.0)
             make.leading.trailing.equalToSuperview()
 //            make.bottom.equalTo(addFavoritesButton.snp.top).offset(8.0)
@@ -151,11 +155,18 @@ final class CryptoDetailView: UIView {
 
         addSubview(addFavoritesButton)
         addFavoritesButton.snp.makeConstraints { make in
+            make.top.equalTo(lineChartView.snp.bottom).offset(32.0)
             make.leading.equalTo(20)
             make.trailing.equalTo(-20)
             make.bottom.equalTo(-32)
             make.height.equalTo(48)
         }
+    }
 
+    /// Function to set lineChartView's delegate to given parameter.
+    ///  - parameters:
+    ///     - delegate: a delegate which has type of ChartViewDelegate
+    func setChartViewDelegate(_ delegate: ChartViewDelegate) {
+        lineChartView.delegate = delegate
     }
 }

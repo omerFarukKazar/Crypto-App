@@ -7,6 +7,8 @@
 
 import Moya
 
+let provider = MoyaProvider<CoinStatsAPI>()
+
 enum CoinStatsAPI { // Enum for different request paths.
     case coins
     case chart(id: String, period: String) // API needs two parameters for queries
