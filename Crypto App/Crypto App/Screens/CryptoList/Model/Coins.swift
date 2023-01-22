@@ -14,7 +14,7 @@ struct Coin: Decodable {
     let rank: Int?
     let price, priceBtc: Double?
     let volume: Double?
-    let marketCap, availableSupply, totalSupply, priceChange1h: Double
+    let marketCap, availableSupply, totalSupply, priceChange1h: Double?
     let priceChange1d, priceChange1w: Double?
     let websiteURL: String?
     let twitterURL: String?
@@ -49,18 +49,17 @@ extension Coin {
 
     var change: Double {
         guard let price = price else { return .zero }
-//              let priceChange1h = priceChange1h else { return .zero }
-        return Double(round(100 * (price * priceChange1h)) / 100)
+        return Double(round(100 * (price * (priceChange1d ?? .zero))) / 100)
     }
 
     var prettyChange: String {
-//        guard let priceChange1h = priceChange1h else { return "-" }
+        guard let priceChange1d = priceChange1d else { return "-" }
         if change > .zero {
-            return "-> \(change) (\(priceChange1h)%) "
+            return "↑ \(change) (\(priceChange1d)%) "
         } else if change < .zero {
-            return "<- \(change) (\(priceChange1h)%) "
+            return "↓ \(change) (\(priceChange1d)%) "
         } else {
-            return "- \(change) (\(priceChange1h)%) "
+            return "(-) \(change) (\(priceChange1d)%) "
         }
     }
 }
