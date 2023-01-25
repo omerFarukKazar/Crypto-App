@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Firebase
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,15 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     // MARK: - Methods
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupWindow()
+        FirebaseApp.configure()
         return true
     }
 
     private func setupWindow() {
         // Override point for customization after application launch.
-        let viewController = CryptoListViewController(viewModel: CryptoListViewModel())
+        let viewController = AuthViewController()
         let window = UIWindow(frame: UIScreen.main.bounds)
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
