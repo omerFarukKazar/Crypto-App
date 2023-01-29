@@ -19,9 +19,6 @@ struct Coin: Decodable {
     let websiteURL: String?
     let twitterURL: String?
     let exp: [String]?
-    let contractAddress: String?
-    let decimals: Int?
-    let redditURL: String?
 
     //    enum CodingKeys: String, CodingKey {
     //        case id, icon, name, symbol, rank, price, priceBtc, volume, marketCap, availableSupply, totalSupply
@@ -61,5 +58,28 @@ extension Coin {
         } else {
             return "(-) \(change) (\(priceChange1d)%) "
         }
+    }
+}
+
+extension Coin {
+    init(from dict: [String: Any]) {
+        id = dict["id"] as? String
+        icon = dict["icon"] as? String
+        name = dict["name"] as? String
+        symbol = dict["symbol"] as? String
+        rank = dict["rank"] as? Int
+        price = dict["price"] as? Double
+        priceBtc = dict["priceBtc"] as? Double
+        volume = dict["volume"] as? Double
+        marketCap = dict["marketCap"] as? Double
+        availableSupply = dict["availableSupply"] as? Double
+        totalSupply = dict["totalSupply"] as? Double
+        priceChange1h = dict["priceChange1h"] as? Double
+        priceChange1d = dict["priceChange1d"] as? Double
+        priceChange1w = dict["priceChange1w"] as? Double
+        websiteURL = dict["websiteURL"] as? String
+        twitterURL = dict["twitterURL"] as? String
+        exp = dict["exp"] as? [String]
+        print(dict)
     }
 }

@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="Crypto_App" customModuleProvider="target">
             <connections>
+                <outlet property="authButton" destination="f2b-3b-Qni" id="GBF-UU-qEW"/>
+                <outlet property="authStateLabel" destination="0EK-G1-gAL" id="9Zx-pd-eeK"/>
                 <outlet property="mailTextField" destination="Liq-vg-rGS" id="sss-c8-1wr"/>
                 <outlet property="passwordTextField" destination="6L9-5f-VCL" id="f0W-Ks-Njg"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -36,47 +38,51 @@
                         </textField>
                     </subviews>
                 </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PoL-XN-F42">
-                    <rect key="frame" x="20" y="738" width="353" height="48"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2b-3b-Qni">
+                    <rect key="frame" x="20" y="765.66666666666663" width="353" height="34.333333333333371"/>
+                    <color key="backgroundColor" systemColor="linkColor"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title=" Sign In">
+                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="didTapAuthorizeButton:" destination="-1" eventType="touchUpInside" id="Pjc-6d-REg"/>
+                    </connections>
+                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="qR1-pO-jIq">
+                    <rect key="frame" x="129" y="151.66666666666666" width="135" height="96.333333333333343"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hmM-LE-nRa">
-                            <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="48"/>
-                            <color key="backgroundColor" systemColor="linkColor"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Sign-Up">
-                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </buttonConfiguration>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0EK-G1-gAL" userLabel="Label">
+                            <rect key="frame" x="41.666666666666657" y="0.0" width="51.666666666666657" height="20.333333333333332"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="QwA-Oq-lrM">
+                            <rect key="frame" x="0.0" y="65.333333333333343" width="135" height="32"/>
+                            <segments>
+                                <segment title="Sign In"/>
+                                <segment title="Sign Up"/>
+                            </segments>
                             <connections>
-                                <action selector="didTapSignUpButton:" destination="-1" eventType="touchUpInside" id="bOE-EL-vbh"/>
+                                <action selector="didSegmentedControlStateChanged:" destination="-1" eventType="valueChanged" id="i4c-6d-4Rg"/>
                             </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2b-3b-Qni">
-                            <rect key="frame" x="180.66666666666663" y="0.0" width="172.33333333333337" height="48"/>
-                            <color key="backgroundColor" systemColor="linkColor"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Login">
-                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </buttonConfiguration>
-                            <connections>
-                                <action selector="didTapLoginButton:" destination="-1" eventType="touchUpInside" id="SiE-Rr-lXz"/>
-                            </connections>
-                        </button>
+                        </segmentedControl>
                     </subviews>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="48" id="ifV-1l-eaS"/>
-                    </constraints>
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="PoL-XN-F42" secondAttribute="bottom" constant="32" id="09C-Gq-zej"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="f2b-3b-Qni" secondAttribute="trailing" constant="20" id="3ij-K3-jcT"/>
                 <constraint firstItem="VOV-LW-iGA" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="AKz-yg-WMX"/>
-                <constraint firstItem="PoL-XN-F42" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="O5X-Jt-19h"/>
                 <constraint firstItem="VOV-LW-iGA" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="PrQ-Tp-dqw"/>
+                <constraint firstItem="VOV-LW-iGA" firstAttribute="top" secondItem="qR1-pO-jIq" secondAttribute="bottom" constant="128" id="YSm-ke-Qpb"/>
+                <constraint firstItem="f2b-3b-Qni" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="ZtV-o1-Svh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="f2b-3b-Qni" secondAttribute="bottom" constant="18" id="aWn-bj-6Gr" userLabel="Safe Area.bottom = Login.bottom + 36"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VOV-LW-iGA" secondAttribute="trailing" constant="20" id="esv-gc-aYR"/>
                 <constraint firstItem="VOV-LW-iGA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="fUy-bN-MJB"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="PoL-XN-F42" secondAttribute="trailing" constant="20" id="kU1-bU-009"/>
+                <constraint firstItem="qR1-pO-jIq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jSF-ez-nnA"/>
             </constraints>
             <point key="canvasLocation" x="139.69465648854961" y="19.718309859154932"/>
         </view>

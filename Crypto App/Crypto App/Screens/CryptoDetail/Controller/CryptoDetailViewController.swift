@@ -9,7 +9,7 @@ import UIKit
 import Charts
 import Kingfisher
 
-final class CryptoDetailViewController: UIViewController {
+final class CryptoDetailViewController: CAViewController {
 
     // MARK: - Properties
     private lazy var cryptoView = CryptoDetailView()
@@ -69,12 +69,17 @@ final class CryptoDetailViewController: UIViewController {
 
 // MARK: - CryptoDetailDelegate
 extension CryptoDetailViewController: CryptoDetailDelegate {
+
     func didErrorOccured(_ error: Error) {
-        print(error.localizedDescription)
+        showAlert(title: "An Error Occured", message: error.localizedDescription)
     }
 
     func didFetchChart() {
         setData()
+    }
+    
+    func didCoinAddedToFavorites() {
+
     }
 }
 

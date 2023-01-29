@@ -8,6 +8,7 @@
 import UIKit
 import Moya
 import Charts
+import FirebaseFirestore
 
 @objc
 protocol CryptoDetailDelegate: AnyObject {
@@ -16,6 +17,7 @@ protocol CryptoDetailDelegate: AnyObject {
     // ViewController side will affect ViewModel too.
     func didErrorOccured(_ error: Error)
     @objc optional func didFetchChart()
+    func didCoinAddedToFavorites()
 }
 
 final class CryptoDetailViewModel {
@@ -29,6 +31,7 @@ final class CryptoDetailViewModel {
         }
     }
     weak var delegate: CryptoDetailDelegate?
+    private let db = Firestore.firestore()
 
     var coinName: String? {
         coin.name
@@ -72,6 +75,21 @@ final class CryptoDetailViewModel {
                     self.delegate?.didErrorOccured(error)
                 }
             }
+        }
+    }
+
+    func addFavorite() {
+        do {
+            guard let data = try coin.exp?.dictionary else { return }
+            db.collection("coins").addDocument(data: data) { err in
+                if let err = err {
+                    self.delegate?.didErrorOccured(err)
+                } else {
+                    self.delegate?.didCoinAddedToFavorites()
+                }
+            }
+        } catch {
+            delegate?.didErrorOccured(error)
         }
     }
 }

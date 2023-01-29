@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-final class CryptoListViewController: UIViewController {
+final class CryptoListViewController: CAViewController {
     // MARK: - Xib Elements
     @IBOutlet private weak var tableView: UITableView!
 
@@ -62,7 +62,8 @@ extension CryptoListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinTableViewCell else { fatalError("CoinTableViewCell not found") }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinTableViewCell else { fatalError("CoinTableViewCell not found")
+        }
         guard let coin = viewModel.coinForIndexPath(indexPath) else { fatalError("Coin can't be found") }
             cell.title = coin.name
             cell.price = coin.prettyPrice
