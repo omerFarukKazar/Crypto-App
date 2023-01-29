@@ -10,7 +10,6 @@ import SnapKit
 import FirebaseCore
 import FirebaseFirestore
 
-
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
@@ -18,15 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Methods
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        setupWindow()
         FirebaseApp.configure()
         let db = Firestore.firestore()
+        setupWindow()
         return true
     }
 
     private func setupWindow() {
         // Override point for customization after application launch.
-        let viewController = AuthViewController(viewModel: AuthViewModel(user: User()))
+//        let viewController = AuthViewController(viewModel: AuthViewModel(user: User()))
+        let viewController = FavoritesViewController(viewModel: FavoritesViewModel())
         let window = UIWindow(frame: UIScreen.main.bounds)
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController

@@ -12,6 +12,9 @@
 		9D0000732986191100CF769A /* Encodable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0000722986191100CF769A /* Encodable+Extensions.swift */; };
 		9D0000762986294500CF769A /* AlertPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0000752986294500CF769A /* AlertPresentable.swift */; };
 		9D00007A29862DB100CF769A /* CAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D00007929862DB100CF769A /* CAViewController.swift */; };
+		9D000080298697CB00CF769A /* FavoritesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D00007F298697CB00CF769A /* FavoritesViewModel.swift */; };
+		9D00008729869F2400CF769A /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D00008529869F2400CF769A /* FavoritesViewController.swift */; };
+		9D00008829869F2400CF769A /* FavoritesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D00008629869F2400CF769A /* FavoritesViewController.xib */; };
 		9D15A0D6297215A00086CB1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D15A0D5297215A00086CB1D /* AppDelegate.swift */; };
 		9D15A0DF297215A10086CB1D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D15A0DE297215A10086CB1D /* Assets.xcassets */; };
 		9D15A0E2297215A10086CB1D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D15A0E0297215A10086CB1D /* LaunchScreen.storyboard */; };
@@ -48,6 +51,9 @@
 		9D0000722986191100CF769A /* Encodable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Encodable+Extensions.swift"; sourceTree = "<group>"; };
 		9D0000752986294500CF769A /* AlertPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPresentable.swift; sourceTree = "<group>"; };
 		9D00007929862DB100CF769A /* CAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAViewController.swift; sourceTree = "<group>"; };
+		9D00007F298697CB00CF769A /* FavoritesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModel.swift; sourceTree = "<group>"; };
+		9D00008529869F2400CF769A /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		9D00008629869F2400CF769A /* FavoritesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoritesViewController.xib; sourceTree = "<group>"; };
 		9D15A0D2297215A00086CB1D /* Crypto App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Crypto App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D15A0D5297215A00086CB1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9D15A0DE297215A10086CB1D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,6 +137,41 @@
 			path = CAKit;
 			sourceTree = "<group>";
 		};
+		9D00007B2986979200CF769A /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				9D00007E298697B100CF769A /* View */,
+				9D00007D298697A600CF769A /* ViewController */,
+				9D00007C298697A000CF769A /* ViewModel */,
+			);
+			path = Favorites;
+			sourceTree = "<group>";
+		};
+		9D00007C298697A000CF769A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9D00007F298697CB00CF769A /* FavoritesViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9D00007D298697A600CF769A /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				9D00008529869F2400CF769A /* FavoritesViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		9D00007E298697B100CF769A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9D00008629869F2400CF769A /* FavoritesViewController.xib */,
+			);
+			name = View;
+			path = "Vİew";
+			sourceTree = "<group>";
+		};
 		9D15A0C9297215A00086CB1D = {
 			isa = PBXGroup;
 			children = (
@@ -173,6 +214,7 @@
 		9D15A0EA297215C00086CB1D /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				9D00007B2986979200CF769A /* Favorites */,
 				9D939C662981E789004BBD29 /* Auth */,
 				9D60F27F2978E9FE00D88C8A /* CryptoDetail */,
 				9DCD431029722C3700C5E06A /* CryptoList */,
@@ -450,6 +492,7 @@
 				9D15A0E2297215A10086CB1D /* LaunchScreen.storyboard in Resources */,
 				9D15A0DF297215A10086CB1D /* Assets.xcassets in Resources */,
 				9D939C5A2981E38D004BBD29 /* GoogleService-Info.plist in Resources */,
+				9D00008829869F2400CF769A /* FavoritesViewController.xib in Resources */,
 				9DBFD04C2977AEBD00CFC75C /* CoinTableViewCell.xib in Resources */,
 				9D939C6A2981E7C4004BBD29 /* AuthViewController.xib in Resources */,
 				9D2F5A5129722CF5006FE786 /* CryptoListViewController.xib in Resources */,
@@ -535,10 +578,12 @@
 				9D55BE8429737D1B00A47832 /* CoinsResponse.swift in Sources */,
 				9D0000732986191100CF769A /* Encodable+Extensions.swift in Sources */,
 				9D939C7229821950004BBD29 /* UserModel.swift in Sources */,
+				9D000080298697CB00CF769A /* FavoritesViewModel.swift in Sources */,
 				9D830D31297AD4F5007D1276 /* CryptoDetailViewModel.swift in Sources */,
 				9DCD431329722C7900C5E06A /* CryptoListViewController.swift in Sources */,
 				9DBFD04A2977AEA100CFC75C /* CoinTableViewCell.swift in Sources */,
 				9D939C6F2981F3BF004BBD29 /* AuthViewModel.swift in Sources */,
+				9D00008729869F2400CF769A /* FavoritesViewController.swift in Sources */,
 				9D60F2852978EA7A00D88C8A /* CryptoDetailView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
