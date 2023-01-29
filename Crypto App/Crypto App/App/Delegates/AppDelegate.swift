@@ -7,7 +7,9 @@
 
 import UIKit
 import SnapKit
-import Firebase
+import FirebaseCore
+import FirebaseFirestore
+
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,12 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setupWindow()
         FirebaseApp.configure()
+        let db = Firestore.firestore()
         return true
     }
 
     private func setupWindow() {
         // Override point for customization after application launch.
-        let viewController = AuthViewController()
+        let viewController = AuthViewController(viewModel: AuthViewModel(user: User()))
         let window = UIWindow(frame: UIScreen.main.bounds)
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
