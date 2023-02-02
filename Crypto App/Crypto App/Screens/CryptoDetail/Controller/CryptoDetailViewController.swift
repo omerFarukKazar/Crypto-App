@@ -12,16 +12,22 @@ import Kingfisher
 final class CryptoDetailViewController: CAViewController {
 
     // MARK: - Properties
-    private lazy var cryptoView = CryptoDetailView()
+    private lazy var cryptoDetailView: CryptoDetailView = {
+        let view = CryptoDetailView()
+        view.delegate = self
+        return view
+    }()
     private var viewModel: CryptoDetailViewModel
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Coin Detail"
-        self.view = cryptoView
+        self.view = cryptoDetailView
         passCoinsData()
+
         viewModel.delegate = self
+        cryptoDetailView.setChartViewDelegate(self)
     }
 
     // MARK: Init
@@ -37,12 +43,12 @@ final class CryptoDetailViewController: CAViewController {
     // MARK: - Methods
     /// Assigns the related properties of coin response in ViewModel to the cryptoView.
     func passCoinsData() {
-        cryptoView.coinName = viewModel.coin.name ?? "-"
-        cryptoView.price = viewModel.coin.prettyPrice
-        cryptoView.rate = viewModel.coin.prettyChange
-        cryptoView.iconImageView.kf.setImage(with: viewModel.coin.iconUrl)
-        cryptoView.isRatePositive = viewModel.isRatePositive
-        cryptoView.setChartViewDelegate(self)
+        cryptoDetailView.coinName = viewModel.coin.name ?? "-"
+        cryptoDetailView.price = viewModel.coin.prettyPrice
+        cryptoDetailView.rate = viewModel.coin.prettyChange
+        cryptoDetailView.iconImageView.kf.setImage(with: viewModel.coin.iconUrl)
+        cryptoDetailView.isRatePositive = viewModel.isRatePositive
+        cryptoDetailView.setChartViewDelegate(self)
         viewModel.fetchChart()
     }
 
@@ -62,9 +68,8 @@ final class CryptoDetailViewController: CAViewController {
         set.setColor(.red)
 
         let data = LineChartData(dataSet: set)
-        cryptoView.lineChartView.data = data
+        cryptoDetailView.lineChartView.data = data
     }
-
 }
 
 // MARK: - CryptoDetailDelegate
@@ -77,13 +82,26 @@ extension CryptoDetailViewController: CryptoDetailDelegate {
     func didFetchChart() {
         setData()
     }
-    
-    func didCoinAddedToFavorites() {
 
+    func didCoinAddedToFavorites() {
+        cryptoDetailView.addFavoriteButton.setTitle("Remove From Favorite", for: .normal)
+        cryptoDetailView.addFavoriteButton.backgroundColor = .systemRed
+        NotificationCenter().post(name: NSNotification.Name("didAnyCoinAddedToFavorites"), object: nil)
     }
 }
 
 // MARK: - ChartViewDelegate
-extension CryptoDetailViewController: ChartViewDelegate {
+extension CryptoDetailViewController: ChartViewDelegate { }
 
+// MARK: - CryptoDetailViewDelegate
+extension CryptoDetailViewController: CryptoDetailViewDelegate {
+    func cryptoDetailView(_ view: CryptoDetailView, didTapAddFavoriteButton button: UIButton) {
+        if button.title(for: .normal) == "Remove From Favorite" {
+            print("REMOVED FROM FAVORITE")
+            cryptoDetailView.addFavoriteButton.setTitle("Add to Favorite", for: .normal)
+            cryptoDetailView.addFavoriteButton.backgroundColor = .systemGreen
+        } else {
+            viewModel.addFavorite()
+        }
+    }
 }

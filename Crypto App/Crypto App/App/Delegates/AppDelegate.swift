@@ -17,16 +17,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Methods
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
-        let db = Firestore.firestore()
+        setupFirebase()
         setupWindow()
         return true
     }
 
+    // MARK: - Methods
+    private func setupFirebase() {
+        FirebaseApp.configure()
+
+        _ = Firestore.firestore()
+    }
+
     private func setupWindow() {
         // Override point for customization after application launch.
-//        let viewController = AuthViewController(viewModel: AuthViewModel(user: User()))
-        let viewController = FavoritesViewController(viewModel: FavoritesViewModel())
+        let viewController = AuthViewController(viewModel: AuthViewModel())
+//        let viewController = FavoritesViewController(viewModel: FavoritesViewModel())
         let window = UIWindow(frame: UIScreen.main.bounds)
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController

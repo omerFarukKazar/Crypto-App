@@ -22,13 +22,6 @@ final class AuthViewController: CAViewController {
         }
     }
 
-    // MARK: - Lifecycle Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "Auth"
-        state = viewModel.segment.rawValue
-    }
-
     // MARK: - Init
     init(viewModel: AuthViewModel) {
         self.viewModel = viewModel
@@ -39,29 +32,53 @@ final class AuthViewController: CAViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Lifecycle Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Auth"
+        state = viewModel.segment.rawValue
+
+        viewModel.authResponse = { change in
+            switch change {
+            case .isFailure(let error):
+                self.showError(error)
+            case .isSuccess:
+                self.showAlert(title: "Sign Up successful")
+            }
+        }
+    }
+
     // MARK: - Action
     @IBAction func didTapAuthorizeButton(_ sender: UIButton) {
-        guard let eMail = mailTextField.text,
+        guard let email = mailTextField.text,
               let password = passwordTextField.text else { return }
 
         switch viewModel.segment { // Chooses action with respect to segmented button.
         case .signIn:
-            viewModel.signIn(eMail: eMail, password: password) { [weak self] (error) in
+//            viewModel.signIn(email: email, password: password) { [weak self] (error) in
+//                guard let self = self else { return }
+//
+//                if let error = error {
+//                    self.showError(error)
+//                } else {
+//                    let viewModel = CryptoListViewModel()
+//                    let viewController = CryptoListViewController(viewModel: viewModel)
+//                    self.navigationController?.pushViewController(viewController, animated: true)
+//                }
+//            }
+            viewModel.signIn(email: email,
+                             password: password,
+                             completion: { [weak self] in
                 guard let self = self else { return }
+                let cryptoListViewModel = CryptoListViewModel()
+                let cryptoListViewController = CryptoListViewController(viewModel: cryptoListViewModel)
 
-                if let error = error {
-                    self.showError(error)
-                } else {
-                    let viewModel = CryptoListViewModel()
-                    let viewController = CryptoListViewController(viewModel: viewModel)
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                }
-            }
+                self.navigationController?.pushViewController(cryptoListViewController, animated: true)
+            })
+
         case .signUp:
-            viewModel.signUp(eMail: eMail, password: password) { error in
-                self.showError(error)
-            }
-
+            viewModel.signUp(email: email,
+                             password: password)
         }
     }
 

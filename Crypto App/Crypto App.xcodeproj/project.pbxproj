@@ -41,6 +41,10 @@
 		9DBFD04A2977AEA100CFC75C /* CoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBFD0492977AEA100CFC75C /* CoinTableViewCell.swift */; };
 		9DBFD04C2977AEBD00CFC75C /* CoinTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DBFD04B2977AEBD00CFC75C /* CoinTableViewCell.xib */; };
 		9DCD431329722C7900C5E06A /* CryptoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DCD431129722C7900C5E06A /* CryptoListViewController.swift */; };
+		9DF43059298A6BE1007401FA /* CAViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF43058298A6BE1007401FA /* CAViewModel.swift */; };
+		9DF4305E298A6F6E007401FA /* UserDefaultsAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF4305D298A6F6E007401FA /* UserDefaultsAccessible.swift */; };
+		9DF43061298A700F007401FA /* UserDefaultsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF43060298A700F007401FA /* UserDefaultsConstants.swift */; };
+		9DF43063298A7FBA007401FA /* FirebaseFirestoreAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF43062298A7FBA007401FA /* FirebaseFirestoreAccessible.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +80,10 @@
 		9DBFD0492977AEA100CFC75C /* CoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTableViewCell.swift; sourceTree = "<group>"; };
 		9DBFD04B2977AEBD00CFC75C /* CoinTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoinTableViewCell.xib; sourceTree = "<group>"; };
 		9DCD431129722C7900C5E06A /* CryptoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoListViewController.swift; sourceTree = "<group>"; };
+		9DF43058298A6BE1007401FA /* CAViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CAViewModel.swift; sourceTree = "<group>"; };
+		9DF4305D298A6F6E007401FA /* UserDefaultsAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsAccessible.swift; sourceTree = "<group>"; };
+		9DF43060298A700F007401FA /* UserDefaultsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsConstants.swift; sourceTree = "<group>"; };
+		9DF43062298A7FBA007401FA /* FirebaseFirestoreAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreAccessible.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				9D0000722986191100CF769A /* Encodable+Extensions.swift */,
+				9DF4305D298A6F6E007401FA /* UserDefaultsAccessible.swift */,
+				9DF43062298A7FBA007401FA /* FirebaseFirestoreAccessible.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -133,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				9D00007929862DB100CF769A /* CAViewController.swift */,
+				9DF43058298A6BE1007401FA /* CAViewModel.swift */,
 			);
 			path = CAKit;
 			sourceTree = "<group>";
@@ -362,6 +373,7 @@
 		9DABC2BB29734D7F00DD8D3C /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				9DF4305F298A7007007401FA /* Constants */,
 				9D00007829862D9E00CF769A /* CAKit */,
 				9D0000742986293E00CF769A /* Helpers */,
 				9D0000712986190600CF769A /* Extensions */,
@@ -413,6 +425,14 @@
 				9DCD431129722C7900C5E06A /* CryptoListViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		9DF4305F298A7007007401FA /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				9DF43060298A700F007401FA /* UserDefaultsConstants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -566,10 +586,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DF43061298A700F007401FA /* UserDefaultsConstants.swift in Sources */,
 				9D0000762986294500CF769A /* AlertPresentable.swift in Sources */,
 				9D7CBD09297C7E3800D4C5BA /* ChartResponse.swift in Sources */,
 				9DABC2BE29734D8C00DD8D3C /* CoinStatsAPI.swift in Sources */,
+				9DF43063298A7FBA007401FA /* FirebaseFirestoreAccessible.swift in Sources */,
 				9D55BE81297370BE00A47832 /* CryptoListViewModel.swift in Sources */,
+				9DF4305E298A6F6E007401FA /* UserDefaultsAccessible.swift in Sources */,
 				9D55BE8629737D4F00A47832 /* Coins.swift in Sources */,
 				9D939C692981E7C4004BBD29 /* AuthViewController.swift in Sources */,
 				9D15A0D6297215A00086CB1D /* AppDelegate.swift in Sources */,
@@ -578,6 +601,7 @@
 				9D55BE8429737D1B00A47832 /* CoinsResponse.swift in Sources */,
 				9D0000732986191100CF769A /* Encodable+Extensions.swift in Sources */,
 				9D939C7229821950004BBD29 /* UserModel.swift in Sources */,
+				9DF43059298A6BE1007401FA /* CAViewModel.swift in Sources */,
 				9D000080298697CB00CF769A /* FavoritesViewModel.swift in Sources */,
 				9D830D31297AD4F5007D1276 /* CryptoDetailViewModel.swift in Sources */,
 				9DCD431329722C7900C5E06A /* CryptoListViewController.swift in Sources */,

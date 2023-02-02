@@ -7,6 +7,18 @@
 
 import Foundation
 
-struct User: Codable {
-    var eMail: String?
+struct User: Encodable {
+    let username: String?
+    let email: String?
+    let pp: String?
+    let favorites: [String]?
+}
+
+extension User {
+    init(from dict: [String: Any]) {
+        username = dict["username"] as? String
+        email = dict["email"] as? String
+        pp = dict["pp"] as? String
+        favorites = dict["favorites"] as? [String]
+    }
 }
