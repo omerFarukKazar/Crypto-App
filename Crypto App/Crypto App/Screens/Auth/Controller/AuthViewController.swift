@@ -22,13 +22,6 @@ final class AuthViewController: CAViewController {
         }
     }
 
-    // MARK: - Lifecycle Methods
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "Auth"
-        state = viewModel.segment.rawValue
-    }
-
     // MARK: - Init
     init(viewModel: AuthViewModel) {
         self.viewModel = viewModel
@@ -39,29 +32,39 @@ final class AuthViewController: CAViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Action
+    // MARK: - Lifecycle Methods
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Auth"
+        state = viewModel.segment.rawValue
+
+        viewModel.authResponse = { change in
+            switch change {
+            case .isFailure(let error):
+                self.showError(error)
+            case .isSuccess:
+                self.showAlert(title: "Sign Up successful")
+            }
+        }
+    }
+
+    // MARK: - IBAction
     @IBAction func didTapAuthorizeButton(_ sender: UIButton) {
-        guard let eMail = mailTextField.text,
+        guard let email = mailTextField.text,
               let password = passwordTextField.text else { return }
 
         switch viewModel.segment { // Chooses action with respect to segmented button.
         case .signIn:
-            viewModel.signIn(eMail: eMail, password: password) { [weak self] (error) in
+            viewModel.signIn(email: email,
+                             password: password,
+                             completion: { [weak self] in
                 guard let self = self else { return }
+                self.setTabBar()
+            })
 
-                if let error = error {
-                    self.showError(error)
-                } else {
-                    let viewModel = CryptoListViewModel()
-                    let viewController = CryptoListViewController(viewModel: viewModel)
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                }
-            }
         case .signUp:
-            viewModel.signUp(eMail: eMail, password: password) { error in
-                self.showError(error)
-            }
-
+            viewModel.signUp(email: email,
+                             password: password)
         }
     }
 
@@ -75,4 +78,30 @@ final class AuthViewController: CAViewController {
         state = viewModel.segment.rawValue
     }
 
+    // MARK: - Methods
+    /// Prepares the Tab Bar VC with the specified VCs.
+    func setTabBar() {
+        let cryptoListViewModel = CryptoListViewModel()
+        let cryptoListViewController = CryptoListViewController(viewModel: cryptoListViewModel)
+
+        let favoritesViewModel = FavoritesViewModel()
+        let favoritesViewController = FavoritesViewController(viewModel: favoritesViewModel)
+
+        let profileViewController = ProfileViewController()
+
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [cryptoListViewController,
+                                            favoritesViewController,
+                                            profileViewController]
+        
+        tabBarController.tabBar.items?[0].image = UIImage(named: "home")
+        tabBarController.tabBar.items?[0].title = "Coins"
+        tabBarController.tabBar.items?[1].image = UIImage(named: "favorite")
+        tabBarController.tabBar.items?[1].title = "Favorites"
+        tabBarController.tabBar.items?[2].image = UIImage(named: "person")
+        tabBarController.tabBar.items?[2].title = "Profile"
+        // These titles and images could be set with a mapping function and by using enums.
+
+        self.navigationController?.pushViewController(tabBarController, animated: true)
+    }
 }

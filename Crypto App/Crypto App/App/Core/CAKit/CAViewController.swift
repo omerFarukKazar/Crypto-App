@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CAViewController: UIViewController, AlertPresentable  {
+class CAViewController: UIViewController, AlertPresentable {
 
     override func viewDidLoad() {
         super.viewDidLoad()

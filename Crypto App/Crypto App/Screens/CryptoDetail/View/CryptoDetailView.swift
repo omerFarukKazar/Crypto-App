@@ -8,10 +8,17 @@
 import UIKit
 import Charts
 
+protocol CryptoDetailViewDelegate: AnyObject {
+    func cryptoDetailView(_ view: CryptoDetailView, didTapAddFavoriteButton button: UIButton)
+}
+
 final class CryptoDetailView: UIView {
 
     // MARK: - Properties
     /// These properties are created to change some properties of private UI Elements from outer scope.
+
+    weak var delegate: CryptoDetailViewDelegate?
+
     var coinName: String? {
         didSet {
             coinNameLabel.text = coinName
@@ -84,12 +91,13 @@ final class CryptoDetailView: UIView {
         return chart
     }()
 
-    private lazy var addFavoritesButton: UIButton = {
+    lazy var addFavoriteButton: UIButton = {
         let button = UIButton()
         button.setTitle("Add to favorites", for: .normal)
         button.titleLabel?.textColor = .black
         button.backgroundColor = .lightGray
         button.layer.cornerRadius = 8.0
+        button.addTarget(self, action: #selector(didTapAddFavoriteButton(_:)), for: .touchUpInside)
         return button
     }()
 
@@ -153,8 +161,8 @@ final class CryptoDetailView: UIView {
 //            make.bottom.equalTo(addFavoritesButton.snp.top).offset(8.0)
         }
 
-        addSubview(addFavoritesButton)
-        addFavoritesButton.snp.makeConstraints { make in
+        addSubview(addFavoriteButton)
+        addFavoriteButton.snp.makeConstraints { make in
             make.top.equalTo(lineChartView.snp.bottom).offset(32.0)
             make.leading.equalTo(20)
             make.trailing.equalTo(-20)
@@ -168,5 +176,10 @@ final class CryptoDetailView: UIView {
     ///     - delegate: a delegate which has type of ChartViewDelegate
     func setChartViewDelegate(_ delegate: ChartViewDelegate) {
         lineChartView.delegate = delegate
+    }
+
+    @objc
+    private func didTapAddFavoriteButton(_ sender: UIButton) {
+        delegate?.cryptoDetailView(self, didTapAddFavoriteButton: sender)
     }
 }

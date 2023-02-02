@@ -5,8 +5,10 @@
 //  Created by Ömer Faruk Kazar on 26.01.2023.
 //
 
-import Foundation
+import Foundation // Never import UIKit in ViewModel. There should be no UI operations on ViewModel.
 import FirebaseAuth
+import FirebaseRemoteConfig
+import FirebaseFirestore
 
 final class AuthViewModel {
 
@@ -17,46 +19,67 @@ final class AuthViewModel {
 
     enum AuthResponse {
         case isSuccess
-        case isFailure(Error)
+        case isFailure(_ error: Error)
     }
 
     // MARK: Properties
     var segment: SegmentedControlState = .signIn
-    var authResponse: ((AuthResponse) -> Void)?
-    var user: User
-
-    // MARK: - Init
-    init(user: User) {
-        self.user = user
-    }
+    var authResponse: ((AuthResponse) -> Void)? // This closure will take AuthResponse as parameter and not going to return something.
+    private let db = Firestore.firestore()
+    private let defaults = UserDefaults.standard
 
     // MARK: - Methods
-    func signUp(eMail: String,
-                password: String,
-                completion: @escaping (Error) -> Void) {
-        Auth.auth().createUser(withEmail: eMail, password: password) { authResult, error in
+    func signUp(email: String,
+                password: String) {
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             if let error = error {
                 self.authResponse?(.isFailure(error))
-                completion(error)
-            } else {
-                self.user.eMail = authResult?.user.email
-                self.authResponse?(.isSuccess)
+            }
+
+            let user = User(username: authResult?.user.displayName,
+                            email: authResult?.user.email,
+                            pp: "",
+                            favorites: [])
+
+            do {
+                guard let data = try user.dictionary,
+                      let id = authResult?.user.uid else {
+                    return
+                }
+
+                self.defaults.set(id, forKey: "uid")
+
+                self.db.collection("users").document(id).setData(data) { error in
+
+                    if let error = error {
+                        self.authResponse?(.isFailure(error))
+                    } else {
+                        self.authResponse?(.isSuccess)
+                    }
+                }
+            } catch {
+                self.authResponse?(.isFailure(error))
             }
         }
     }
 
-    func signIn(eMail: String,
+    func signIn(email: String,
                 password: String,
-                completion: @escaping (Error?) -> Void) {
-        Auth.auth().signIn(withEmail: eMail, password: password) { authResult, error in
-            if let error = error {
-                self.authResponse?(.isFailure(error))
-                completion(error)
-            } else {
-                self.authResponse?(.isSuccess)
-                completion(nil)
-            }
+                completion: @escaping () -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+        if let error = error {
+            self.authResponse?(.isFailure(error))
+            return
         }
+
+        guard let id = authResult?.user.uid else {
+            return
+        }
+
+        self.defaults.set(id, forKey: "uid")
+
+        completion()
+    }
     }
 
 }

@@ -29,6 +29,7 @@ final class CryptoListViewController: CAViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         title = "Coins"
+//        tabBarController?.navigationItem.hidesBackButton = true
         let nib = UINib(nibName: "CoinTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "cell")
 
