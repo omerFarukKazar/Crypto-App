@@ -24,7 +24,6 @@ class FavoritesViewController: CAViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Favorites"
 
         let nib = UINib(nibName: "CoinTableViewCell", bundle: nil)
         favoriteCoinsTableView.register(nib, forCellReuseIdentifier: "cell")
@@ -40,10 +39,10 @@ class FavoritesViewController: CAViewController {
 
 }
 
-extension FavoritesViewController: UITableViewDelegate {
+// MARK: - UITableViewDelegate
+extension FavoritesViewController: UITableViewDelegate { }
 
-}
-
+// MARK: - UITableViewDataSource
 extension FavoritesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.numberOfRows

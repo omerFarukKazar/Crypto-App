@@ -45,6 +45,8 @@
 		9DF4305E298A6F6E007401FA /* UserDefaultsAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF4305D298A6F6E007401FA /* UserDefaultsAccessible.swift */; };
 		9DF43061298A700F007401FA /* UserDefaultsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF43060298A700F007401FA /* UserDefaultsConstants.swift */; };
 		9DF43063298A7FBA007401FA /* FirebaseFirestoreAccessible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF43062298A7FBA007401FA /* FirebaseFirestoreAccessible.swift */; };
+		9DFB5CB9298BD8BB00B844F7 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFB5CB7298BD8BB00B844F7 /* ProfileViewController.swift */; };
+		9DFB5CBA298BD8BB00B844F7 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9DFB5CB8298BD8BB00B844F7 /* ProfileViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +86,8 @@
 		9DF4305D298A6F6E007401FA /* UserDefaultsAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsAccessible.swift; sourceTree = "<group>"; };
 		9DF43060298A700F007401FA /* UserDefaultsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsConstants.swift; sourceTree = "<group>"; };
 		9DF43062298A7FBA007401FA /* FirebaseFirestoreAccessible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseFirestoreAccessible.swift; sourceTree = "<group>"; };
+		9DFB5CB7298BD8BB00B844F7 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		9DFB5CB8298BD8BB00B844F7 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +232,7 @@
 				9D00007B2986979200CF769A /* Favorites */,
 				9D939C662981E789004BBD29 /* Auth */,
 				9D60F27F2978E9FE00D88C8A /* CryptoDetail */,
+				9DFB5CB2298BD87000B844F7 /* Profile */,
 				9DCD431029722C3700C5E06A /* CryptoList */,
 			);
 			path = Screens;
@@ -435,6 +440,47 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		9DFB5CB2298BD87000B844F7 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				9DFB5CB6298BD89B00B844F7 /* Model */,
+				9DFB5CB5298BD89400B844F7 /* Controller */,
+				9DFB5CB4298BD89000B844F7 /* ViewModel */,
+				9DFB5CB3298BD88400B844F7 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		9DFB5CB3298BD88400B844F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9DFB5CB4298BD89000B844F7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9DFB5CB5298BD89400B844F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9DFB5CB7298BD8BB00B844F7 /* ProfileViewController.swift */,
+				9DFB5CB8298BD8BB00B844F7 /* ProfileViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9DFB5CB6298BD89B00B844F7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -508,6 +554,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DFB5CBA298BD8BB00B844F7 /* ProfileViewController.xib in Resources */,
 				9D0000702986145700CF769A /* remote_config_defaults.plist in Resources */,
 				9D15A0E2297215A10086CB1D /* LaunchScreen.storyboard in Resources */,
 				9D15A0DF297215A10086CB1D /* Assets.xcassets in Resources */,
@@ -592,6 +639,7 @@
 				9DABC2BE29734D8C00DD8D3C /* CoinStatsAPI.swift in Sources */,
 				9DF43063298A7FBA007401FA /* FirebaseFirestoreAccessible.swift in Sources */,
 				9D55BE81297370BE00A47832 /* CryptoListViewModel.swift in Sources */,
+				9DFB5CB9298BD8BB00B844F7 /* ProfileViewController.swift in Sources */,
 				9DF4305E298A6F6E007401FA /* UserDefaultsAccessible.swift in Sources */,
 				9D55BE8629737D4F00A47832 /* Coins.swift in Sources */,
 				9D939C692981E7C4004BBD29 /* AuthViewController.swift in Sources */,

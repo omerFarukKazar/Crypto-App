@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import FirebaseFirestore
 
 final class FavoritesViewModel: CAViewModel {
 
+    // MARK: Properties
     private var coins = [Coin]()
 
     var numberOfRows: Int {

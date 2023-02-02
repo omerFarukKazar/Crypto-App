@@ -48,32 +48,18 @@ final class AuthViewController: CAViewController {
         }
     }
 
-    // MARK: - Action
+    // MARK: - IBAction
     @IBAction func didTapAuthorizeButton(_ sender: UIButton) {
         guard let email = mailTextField.text,
               let password = passwordTextField.text else { return }
 
         switch viewModel.segment { // Chooses action with respect to segmented button.
         case .signIn:
-//            viewModel.signIn(email: email, password: password) { [weak self] (error) in
-//                guard let self = self else { return }
-//
-//                if let error = error {
-//                    self.showError(error)
-//                } else {
-//                    let viewModel = CryptoListViewModel()
-//                    let viewController = CryptoListViewController(viewModel: viewModel)
-//                    self.navigationController?.pushViewController(viewController, animated: true)
-//                }
-//            }
             viewModel.signIn(email: email,
                              password: password,
                              completion: { [weak self] in
                 guard let self = self else { return }
-                let cryptoListViewModel = CryptoListViewModel()
-                let cryptoListViewController = CryptoListViewController(viewModel: cryptoListViewModel)
-
-                self.navigationController?.pushViewController(cryptoListViewController, animated: true)
+                self.setTabBar()
             })
 
         case .signUp:
@@ -92,4 +78,28 @@ final class AuthViewController: CAViewController {
         state = viewModel.segment.rawValue
     }
 
+    // MARK: - Methods
+    /// Prepares the Tab Bar VC with the specified VCs.
+    func setTabBar() {
+        let cryptoListViewModel = CryptoListViewModel()
+        let cryptoListViewController = CryptoListViewController(viewModel: cryptoListViewModel)
+        cryptoListViewController.title = "Coins"
+
+        let favoritesViewModel = FavoritesViewModel()
+        let favoritesViewController = FavoritesViewController(viewModel: favoritesViewModel)
+        favoritesViewController.title = "Favorites"
+
+        let profileViewController = ProfileViewController()
+        profileViewController.title = "Profile"
+
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [cryptoListViewController,
+                                            favoritesViewController,
+                                            profileViewController]
+        tabBarController.tabBar.items?[0].image = UIImage(named: "home")
+        tabBarController.tabBar.items?[1].image = UIImage(named: "favorite")
+        tabBarController.tabBar.items?[2].image = UIImage(named: "person")
+
+        self.navigationController?.pushViewController(tabBarController, animated: true)
+    }
 }
