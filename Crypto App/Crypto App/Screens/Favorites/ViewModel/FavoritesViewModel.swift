@@ -9,13 +9,14 @@ import Foundation
 
 final class FavoritesViewModel: CAViewModel {
 
-    // MARK: Properties
+    // MARK: - Properties
     private var coins = [Coin]()
 
     var numberOfRows: Int {
         coins.count
     }
 
+    // MARK: - Methods
     func coinForIndexPath(_ indexPath: IndexPath) -> Coin? {
         coins[indexPath.row]
     }
@@ -27,7 +28,7 @@ final class FavoritesViewModel: CAViewModel {
             return
         }
 
-        db.collection("users").document(uid).getDocument() { (querySnapshot, err) in
+        db.collection("users").document(uid).getDocument { (querySnapshot, err) in
             guard let data = querySnapshot?.data() else {
                 return
             }

@@ -83,22 +83,24 @@ final class AuthViewController: CAViewController {
     func setTabBar() {
         let cryptoListViewModel = CryptoListViewModel()
         let cryptoListViewController = CryptoListViewController(viewModel: cryptoListViewModel)
-        cryptoListViewController.title = "Coins"
 
         let favoritesViewModel = FavoritesViewModel()
         let favoritesViewController = FavoritesViewController(viewModel: favoritesViewModel)
-        favoritesViewController.title = "Favorites"
 
         let profileViewController = ProfileViewController()
-        profileViewController.title = "Profile"
 
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [cryptoListViewController,
                                             favoritesViewController,
                                             profileViewController]
+        
         tabBarController.tabBar.items?[0].image = UIImage(named: "home")
+        tabBarController.tabBar.items?[0].title = "Coins"
         tabBarController.tabBar.items?[1].image = UIImage(named: "favorite")
+        tabBarController.tabBar.items?[1].title = "Favorites"
         tabBarController.tabBar.items?[2].image = UIImage(named: "person")
+        tabBarController.tabBar.items?[2].title = "Profile"
+        // These titles and images could be set with a mapping function and by using enums.
 
         self.navigationController?.pushViewController(tabBarController, animated: true)
     }

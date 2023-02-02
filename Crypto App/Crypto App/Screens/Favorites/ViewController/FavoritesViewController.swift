@@ -9,10 +9,12 @@ import UIKit
 
 class FavoritesViewController: CAViewController {
 
+    // MARK: - Properties
     @IBOutlet weak var favoriteCoinsTableView: UITableView!
     private let viewModel: FavoritesViewModel // Hence viewModel doesn't hold a UIController, there is no need to use weak property.
     private var isAnyCoinAddedToFavorites: Bool = true
 
+    // MARK: - Init
     init(viewModel: FavoritesViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -22,6 +24,7 @@ class FavoritesViewController: CAViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 

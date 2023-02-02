@@ -454,6 +454,7 @@
 		9DFB5CB3298BD88400B844F7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9DFB5CB8298BD8BB00B844F7 /* ProfileViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -469,7 +470,6 @@
 			isa = PBXGroup;
 			children = (
 				9DFB5CB7298BD8BB00B844F7 /* ProfileViewController.swift */,
-				9DFB5CB8298BD8BB00B844F7 /* ProfileViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
