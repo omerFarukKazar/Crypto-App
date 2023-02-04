@@ -11,15 +11,23 @@ protocol AlertPresentable { }
 
 extension AlertPresentable where Self: UIViewController { // It's like accessing ViewController from outer scope.
     // When the desired view controller conforms AlertManager, this extension gains access to VC to present alerts.
-    func showAlert(title: String? = nil, message: String? = nil) {
+    func showAlert(title: String? = nil, message: String? = nil, addCancelButton: Bool = false, handler: ( (UIAlertAction) -> Void )? = nil ) {
         let alertController = UIAlertController(title: title,
                                                 message: message,
                                                 preferredStyle: .alert)
 
-        self.present(alertController, animated: true)
+        let defaultAction = UIAlertAction(title: "OK",
+                                          style: .default,
+                                          handler: handler)
 
-        let okButton = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(okButton)
+        if addCancelButton == true {
+            let cancelAction = UIAlertAction(title: "Cancel",
+                                             style: .cancel)
+            alertController.addAction(cancelAction)
+        }
+
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true)
     }
 
     func showError(_ error: Error) {

@@ -6,13 +6,27 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 final class ProfileViewController: CAViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Profile"
+    }
+
+    @IBAction private func didTapSignOutButton(_ sender: UIButton) {
+        showAlert(title: "Warning",
+                  message: "Are you sure to Sign Out?",
+                  addCancelButton: true,
+                  handler: { [weak self] (_) in
+            do {
+                try Auth.auth().signOut()
+                self?.navigationController?.popToRootViewController(animated: true)
+            } catch {
+                self?.showError(error)
+            }
+        })
     }
 
 }

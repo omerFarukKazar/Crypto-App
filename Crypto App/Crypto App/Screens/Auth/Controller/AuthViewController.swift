@@ -58,8 +58,7 @@ final class AuthViewController: CAViewController {
             viewModel.signIn(email: email,
                              password: password,
                              completion: { [weak self] in
-                guard let self = self else { return }
-                self.setTabBar()
+                self?.setTabBar()
             })
 
         case .signUp:
@@ -93,7 +92,7 @@ final class AuthViewController: CAViewController {
         tabBarController.viewControllers = [cryptoListViewController,
                                             favoritesViewController,
                                             profileViewController]
-        
+
         tabBarController.tabBar.items?[0].image = UIImage(named: "home")
         tabBarController.tabBar.items?[0].title = "Coins"
         tabBarController.tabBar.items?[1].image = UIImage(named: "favorite")
@@ -102,6 +101,6 @@ final class AuthViewController: CAViewController {
         tabBarController.tabBar.items?[2].title = "Profile"
         // These titles and images could be set with a mapping function and by using enums.
 
-        self.navigationController?.pushViewController(tabBarController, animated: true)
+        navigationController?.pushViewController(tabBarController, animated: true)
     }
 }
