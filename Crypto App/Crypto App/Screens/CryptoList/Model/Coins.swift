@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Coin: Decodable {
+struct Coin: Codable {
     let id: String?
     let icon: String?
     let name, symbol: String?
@@ -80,6 +80,5 @@ extension Coin {
         websiteURL = dict["websiteURL"] as? String
         twitterURL = dict["twitterURL"] as? String
         exp = dict["exp"] as? [String]
-        print(dict)
     }
 }
