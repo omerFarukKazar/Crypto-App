@@ -25,12 +25,16 @@ final class CryptoDetailViewModel {
     ///  Creating a coin instance with dependency injection and returning some of their properties in order to
     ///  pass them to DetailView.
     let coin: Coin
+
     private(set) var chartResponse: ChartResponse? { // If fetchCharts() function returns success. chartResponse will be set and, didiFetchChart function of delegate will be triggered.
         didSet {
             delegate?.didFetchChart?()
         }
     }
+
     weak var delegate: CryptoDetailDelegate?
+
+    private let defaults = UserDefaults.standard
     private let db = Firestore.firestore()
 
     var coinName: String? {
@@ -79,17 +83,15 @@ final class CryptoDetailViewModel {
     }
 
     func addFavorite() {
-        do {
-            guard let data = try coin.exp?.dictionary else { return }
-            db.collection("coins").addDocument(data: data) { err in
-                if let err = err {
-                    self.delegate?.didErrorOccured(err)
-                } else {
-                    self.delegate?.didCoinAddedToFavorites()
-                }
-            }
-        } catch {
-            delegate?.didErrorOccured(error)
+        guard let id = coin.id,
+              let uid = defaults.string(forKey: UserDefaultConstants.uid.rawValue) else {
+            return
         }
+
+        db.collection("users").document(uid).updateData([
+            "favorites": FieldValue.arrayUnion([id])
+        ])
+
+        delegate?.didCoinAddedToFavorites()
     }
 }
