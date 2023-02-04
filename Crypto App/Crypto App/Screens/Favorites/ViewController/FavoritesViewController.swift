@@ -7,10 +7,10 @@
 
 import UIKit
 
-class FavoritesViewController: CAViewController {
+final class FavoritesViewController: CAViewController {
 
     // MARK: - Properties
-    @IBOutlet weak var favoriteCoinsTableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     private let viewModel: FavoritesViewModel // Hence viewModel doesn't hold a UIController, there is no need to use weak property.
     private var isAnyCoinAddedToFavorites: Bool = true
 
@@ -29,15 +29,36 @@ class FavoritesViewController: CAViewController {
         super.viewDidLoad()
 
         let nib = UINib(nibName: "CoinTableViewCell", bundle: nil)
-        favoriteCoinsTableView.register(nib, forCellReuseIdentifier: "cell")
+        tableView.register(nib, forCellReuseIdentifier: "cell")
 
-        viewModel.fetchFavorites { error in
-            if let error = error {
-                self.showError(error)
-            } else {
-                self.favoriteCoinsTableView.reloadData()
+        NotificationCenter().addObserver(self,
+                                         selector: #selector(self.didAnyCoinAddedToFavorites),
+                                         name: NSNotification.Name("didAnyCoinAddedToFavorites"),
+                                         object: nil)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isAnyCoinAddedToFavorites = true
+        fetchFavorites()
+    }
+
+    // MARK: - Methods
+    private func fetchFavorites() {
+        if isAnyCoinAddedToFavorites {
+            isAnyCoinAddedToFavorites = false
+            viewModel.fetchFavorites { error in
+                if let error = error {
+                    self.showError(error)
+                } else {
+                    self.tableView.reloadData()
+                }
             }
         }
+    }
+
+    @objc private func didAnyCoinAddedToFavorites() {
+        isAnyCoinAddedToFavorites = true
     }
 
 }

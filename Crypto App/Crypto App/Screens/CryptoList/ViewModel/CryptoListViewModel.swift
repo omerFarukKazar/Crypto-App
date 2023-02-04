@@ -6,6 +6,7 @@
 //
 
 import Moya
+import FirebaseFirestore
 
 enum CryptoListChanges { // Enum for the network response situations.
     case didErrorOccured(_ error: Error)
@@ -22,6 +23,8 @@ final class CryptoListViewModel {
         }
     }
 
+    private let db = Firestore.firestore()
+
     var numberOfRows: Int { // To set the TableView's number of rows.
         coinsResponse?.coins?.count ?? .zero
     }
@@ -31,16 +34,41 @@ final class CryptoListViewModel {
     /// Handles the failure and success cases by using a closure named changeHandler.
     func fetchCoins() {
         provider.request(.coins) { result in
-            switch result { // 
+            switch result {
             case .failure(let error):
                 self.changeHandler?(.didErrorOccured(error))
             case .success(let response):
                 do {
                     let coinsResponse = try JSONDecoder().decode(CoinsResponse.self, from: response.data)
+
+                    self.addCoinsToFirebaseFirestore(coinsResponse.coins)
+
                     self.coinsResponse = coinsResponse
                 } catch {
                     self.changeHandler?(.didErrorOccured(error))
                 }
+            }
+        }
+    }
+
+    private func addCoinsToFirebaseFirestore(_ coins: [Coin]?) {
+        guard let coins = coins else {
+            return
+        }
+        coins.forEach { coin in
+            do {
+                guard let data = try coin.dictionary, let id = coin.id else {
+                    return
+                }
+
+                db.collection("coins").document(id).setData(data) { error in
+
+                    if let error = error {
+                        self.changeHandler?(.didErrorOccured(error))
+                    }
+                }
+            } catch {
+                self.changeHandler?(.didErrorOccured(error))
             }
         }
     }

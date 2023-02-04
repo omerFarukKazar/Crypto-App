@@ -19,17 +19,6 @@ final class CryptoDetailViewController: CAViewController {
     }()
     private var viewModel: CryptoDetailViewModel
 
-    // MARK: - Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "Coin Detail"
-        self.view = cryptoDetailView
-        passCoinsData()
-
-        viewModel.delegate = self
-        cryptoDetailView.setChartViewDelegate(self)
-    }
-
     // MARK: Init
     init(viewModel: CryptoDetailViewModel) {
         self.viewModel = viewModel
@@ -40,14 +29,29 @@ final class CryptoDetailViewController: CAViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Coin Detail"
+        self.view = cryptoDetailView
+        viewModel.delegate = self
+
+        passCoinsData()
+        setChart()
+
+    }
+
     // MARK: - Methods
     /// Assigns the related properties of coin response in ViewModel to the cryptoView.
     func passCoinsData() {
         cryptoDetailView.coinName = viewModel.coin.name ?? "-"
         cryptoDetailView.price = viewModel.coin.prettyPrice
         cryptoDetailView.rate = viewModel.coin.prettyChange
-        cryptoDetailView.iconImageView.kf.setImage(with: viewModel.coin.iconUrl)
         cryptoDetailView.isRatePositive = viewModel.isRatePositive
+        cryptoDetailView.iconImageView.kf.setImage(with: viewModel.coin.iconUrl)
+    }
+
+    func setChart() {
         cryptoDetailView.setChartViewDelegate(self)
         viewModel.fetchChart()
     }
