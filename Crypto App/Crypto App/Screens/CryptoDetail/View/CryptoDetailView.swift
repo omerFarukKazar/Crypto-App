@@ -88,8 +88,16 @@ final class CryptoDetailView: UIView {
     }()
 
     private(set) lazy var lineChartView: LineChartView = {
-        let chart = LineChartView()
-        return chart
+        let chartView = LineChartView()
+        chartView.doubleTapToZoomEnabled = false
+        chartView.drawGridBackgroundEnabled = true
+        chartView.gridBackgroundColor = .white
+        chartView.xAxis.labelCount = 3
+        chartView.leftAxis.enabled = false
+        chartView.chartDescription.enabled = false
+        chartView.legend.enabled = false
+        chartView.animate(xAxisDuration: 2)
+        return chartView
     }()
 
     lazy var addFavoriteButton: UIButton = {

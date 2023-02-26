@@ -33,7 +33,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func setupWindow() {
         // Override point for customization after application launch.
         let viewController = AuthViewController(viewModel: AuthViewModel())
-//        let viewController = FavoritesViewController(viewModel: FavoritesViewModel())
         let window = UIWindow(frame: UIScreen.main.bounds)
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
