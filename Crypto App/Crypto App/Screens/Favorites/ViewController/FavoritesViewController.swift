@@ -64,7 +64,12 @@ final class FavoritesViewController: CAViewController {
 }
 
 // MARK: - UITableViewDelegate
-extension FavoritesViewController: UITableViewDelegate { }
+extension FavoritesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let viewModel = CryptoDetailViewModel(coin: viewModel.coins[indexPath.row])
+        navigationController?.pushViewController(CryptoDetailViewController(viewModel: viewModel), animated: true)
+    }
+}
 
 // MARK: - UITableViewDataSource
 extension FavoritesViewController: UITableViewDataSource {
