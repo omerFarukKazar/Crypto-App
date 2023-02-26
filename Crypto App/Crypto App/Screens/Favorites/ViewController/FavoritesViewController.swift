@@ -11,7 +11,7 @@ final class FavoritesViewController: CAViewController {
 
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
-    private let viewModel: FavoritesViewModel // Hence viewModel doesn't hold a UIController, there is no need to use weak property.
+    private let viewModel: FavoritesViewModel
     private var isAnyCoinAddedToFavorites: Bool = true
 
     // MARK: - Init
@@ -73,7 +73,8 @@ extension FavoritesViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CoinTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell",
+                                                       for: indexPath) as? CoinTableViewCell else {
             fatalError("CoinTableViewCell not found.")
         }
         guard let coin = viewModel.coinForIndexPath(indexPath) else {

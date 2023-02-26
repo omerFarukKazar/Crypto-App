@@ -7,7 +7,8 @@
 
 import Foundation
 
-// This extension is used to store Coins data as a Dictionary because Firebase Firestore wants input parameter to be a Dictionary.
+// This extension is used to store Coins data as a Dictionary
+// Because Firebase Firestore wants input parameter to be a Dictionary.
 extension Encodable {
     var dictionary: [String: Any]? {
         get throws { // Throwing getter

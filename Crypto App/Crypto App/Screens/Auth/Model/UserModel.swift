@@ -10,6 +10,7 @@ import Foundation
 struct User: Encodable {
     let username: String?
     let email: String?
+    // swiftlint:disable:next identifier_name
     let pp: String?
     let favorites: [String]?
 }

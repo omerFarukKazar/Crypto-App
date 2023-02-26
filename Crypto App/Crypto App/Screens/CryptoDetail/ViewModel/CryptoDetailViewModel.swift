@@ -26,7 +26,9 @@ final class CryptoDetailViewModel {
     ///  pass them to DetailView.
     let coin: Coin
 
-    private(set) var chartResponse: ChartResponse? { // If fetchCharts() function returns success. chartResponse will be set and, didiFetchChart function of delegate will be triggered.
+    private(set) var chartResponse: ChartResponse? {
+        // swiftlint:disable:next line_length
+        // If fetchCharts() function returns success, chartResponse will be set and, didiFetchChart function of delegate will be triggered.
         didSet {
             delegate?.didFetchChart?()
         }
@@ -35,6 +37,7 @@ final class CryptoDetailViewModel {
     weak var delegate: CryptoDetailDelegate?
 
     private let defaults = UserDefaults.standard
+    // swiftlint:disable:next identifier_name
     private let db = Firestore.firestore()
 
     var coinName: String? {

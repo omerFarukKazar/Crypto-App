@@ -15,7 +15,8 @@ final class AuthViewController: CAViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var authStateLabel: UILabel!
     @IBOutlet weak var authButton: UIButton!
-    private var state: String? { // state that holds the raw value of current segment. In order to change the label and button title.
+    /// State that holds the raw value of current segment. In order to change the label and button title.
+    private var state: String? {
         didSet {
             authStateLabel.text = state
             authButton.setTitle(state, for: .normal)

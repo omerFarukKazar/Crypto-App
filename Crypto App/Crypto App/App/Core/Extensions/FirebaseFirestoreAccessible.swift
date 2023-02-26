@@ -11,6 +11,7 @@ import FirebaseFirestore
 protocol FireBaseFireStoreAccessible {}
 
 extension FireBaseFireStoreAccessible {
+    // swiftlint:disable:next identifier_name
     var db: Firestore {
         Firestore.firestore()
     }
