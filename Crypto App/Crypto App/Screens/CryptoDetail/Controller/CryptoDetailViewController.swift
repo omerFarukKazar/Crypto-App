@@ -56,7 +56,8 @@ final class CryptoDetailViewController: CAViewController {
         viewModel.fetchChart()
     }
 
-    /// Takes the entries by mapping the chart data response. Creates the chart and line according to those entries. Passes that chart data to viewModel.
+    /// Takes the entries by mapping the chart data response. Creates the chart and line
+    /// according to those entries. Passes that chart data to viewModel.
     func setData() {
         guard let entries = (viewModel.chartResponse?.chart?.map { (metrics) -> ChartDataEntry in
             return ChartDataEntry(x: metrics[0],

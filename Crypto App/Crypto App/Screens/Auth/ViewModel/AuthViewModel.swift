@@ -24,7 +24,9 @@ final class AuthViewModel {
 
     // MARK: Properties
     var segment: SegmentedControlState = .signIn
-    var authResponse: ((AuthResponse) -> Void)? // This closure will take AuthResponse as parameter and not going to return something.
+    /// This closure will hold AuthResponse as parameter and not going to return something.
+    var authResponse: ((AuthResponse) -> Void)?
+    // swiftlint:disable:next identifier_name
     private let db = Firestore.firestore()
     private let defaults = UserDefaults.standard
 

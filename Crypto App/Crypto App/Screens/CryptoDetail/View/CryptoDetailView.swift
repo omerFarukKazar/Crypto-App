@@ -56,7 +56,8 @@ final class CryptoDetailView: UIView {
         return label
     }()
 
-    lazy var iconImageView: UIImageView = UIImageView() // Since there is no additional changes, it's easier to instantiate without closure.
+    lazy var iconImageView: UIImageView = UIImageView()
+    // Since there is no additional changes, it's easier to instantiate without closure.
 
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
@@ -105,6 +106,7 @@ final class CryptoDetailView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
+        print(frame.height)
         setupLayout()
     }
 

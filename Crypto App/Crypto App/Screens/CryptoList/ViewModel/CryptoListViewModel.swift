@@ -23,6 +23,7 @@ final class CryptoListViewModel {
         }
     }
 
+    // swiftlint:disable:next identifier_name
     private let db = Firestore.firestore()
 
     var numberOfRows: Int { // To set the TableView's number of rows.
