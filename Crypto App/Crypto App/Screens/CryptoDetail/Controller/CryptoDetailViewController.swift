@@ -102,7 +102,7 @@ extension CryptoDetailViewController: ChartViewDelegate { }
 extension CryptoDetailViewController: CryptoDetailViewDelegate {
     func cryptoDetailView(_ view: CryptoDetailView, didTapAddFavoriteButton button: UIButton) {
         if button.title(for: .normal) == "Remove From Favorite" {
-            print("REMOVED FROM FAVORITE")
+            showAlert(title: "Success", message: "Coin Successfully removed from favorites.")
             cryptoDetailView.addFavoriteButton.setTitle("Add to Favorite", for: .normal)
             cryptoDetailView.addFavoriteButton.backgroundColor = .systemGreen
         } else {

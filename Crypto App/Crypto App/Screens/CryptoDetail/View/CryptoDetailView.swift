@@ -114,7 +114,6 @@ final class CryptoDetailView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
-        print(frame.height)
         setupLayout()
     }
 

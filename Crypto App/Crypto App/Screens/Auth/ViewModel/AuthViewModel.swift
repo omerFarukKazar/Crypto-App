@@ -38,8 +38,7 @@ final class AuthViewModel {
                 self.authResponse?(.isFailure(error))
             }
 
-            let user = User(username: authResult?.user.displayName,
-                            email: authResult?.user.email,
+            let user = User(email: authResult?.user.email,
                             pp: "",
                             favorites: [])
 
@@ -69,19 +68,20 @@ final class AuthViewModel {
                 password: String,
                 completion: @escaping () -> Void) {
         Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
-        if let error = error {
-            self.authResponse?(.isFailure(error))
-            return
+            if let error = error {
+                self.authResponse?(.isFailure(error))
+                return
+            }
+
+            guard let id = authResult?.user.uid else {
+                return
+            }
+
+            self.defaults.set(id, forKey: "uid")
+            self.defaults.set(true, forKey: "didSignedIn")
+
+            completion()
         }
-
-        guard let id = authResult?.user.uid else {
-            return
-        }
-
-        self.defaults.set(id, forKey: "uid")
-
-        completion()
-    }
     }
 
 }
