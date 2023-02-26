@@ -10,7 +10,7 @@ import Foundation
 final class FavoritesViewModel: CAViewModel {
 
     // MARK: - Properties
-    private var coins = [Coin]()
+    var coins = [Coin]()
 
     var numberOfRows: Int {
         coins.count
