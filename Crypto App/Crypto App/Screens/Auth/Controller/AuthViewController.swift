@@ -87,7 +87,8 @@ final class AuthViewController: CAViewController {
         let favoritesViewModel = FavoritesViewModel()
         let favoritesViewController = FavoritesViewController(viewModel: favoritesViewModel)
 
-        let profileViewController = ProfileViewController()
+        let profileViewModel = ProfileViewModel()
+        let profileViewController = ProfileViewController(viewModel: profileViewModel)
 
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [cryptoListViewController,
@@ -102,6 +103,7 @@ final class AuthViewController: CAViewController {
         tabBarController.tabBar.items?[2].title = "Profile"
         // These titles and images could be set with a mapping function and by using enums.
 
+        tabBarController.navigationItem.hidesBackButton = true
         navigationController?.pushViewController(tabBarController, animated: true)
     }
 }
