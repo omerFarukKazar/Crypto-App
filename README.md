@@ -2,11 +2,18 @@
 A crypto tracker app.
 
 ## How To Install
-  Just open the destination folder in terminal and paste the following code
+  Open the destination folder in terminal and paste the following code
 
 ```bash
-git clone https://github.com/omerFarukKazar/iTunes-App.git
+git clone https://github.com/omerFarukKazar/Crypto-App.git
 ```
+
+  Open the folder which contains .xcodeproj in Terminal and paste the following code to install packages.
+  
+```bash
+pod install
+```
+
 ## What i used & learnt?
   * MVVM
   
